@@ -24,27 +24,27 @@ Le flux de données suit l'architecture suivante :
 ```mermaid
 graph LR
     subgraph SOURCES [Sources de Données]
-        A[API OpenWeather]
-        B[API Nominatim]
-        C[Site Booking.com]
+        A["API OpenWeather"]
+        B["API Nominatim"]
+        C["Site Booking.com"]
     end
 
     subgraph COLLECTION [Collecte & Ingestion]
-        D[Script Python<br/>(Requests)]
-        E[Scrapy Spider<br/>(Booking)]
+        D["Script Python<br/>(Requests)"]
+        E["Scrapy Spider<br/>(Booking)"]
     end
 
     subgraph DATALAKE [Data Lake - AWS S3]
-        F[(Fichiers CSV<br/>Bruts)]
+        F[("Fichiers CSV<br/>Bruts")]
     end
 
     subgraph ETL [Transformation & Warehouse]
-        G[Pandas<br/>(Nettoyage & Score)]
-        H[(AWS RDS<br/>PostgreSQL)]
+        G["Pandas<br/>(Nettoyage & Score)"]
+        H[("AWS RDS<br/>PostgreSQL")]
     end
 
     subgraph VIZ [Visualisation]
-        I[Cartes Interactives<br/>Plotly]
+        I["Cartes Interactives<br/>Plotly"]
     end
 
     A --> D
