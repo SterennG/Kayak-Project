@@ -57,3 +57,55 @@ graph LR
     G --> I
     H -.-> I
 ```
+
+```mermaid
+graph TD
+
+    %% ====================
+    %% DOMAINES ENTREPRISE
+    %% ====================
+    subgraph CLIENT_APP [🧭 Frontend / Application Client]
+        VIZ["Plotly Dashboards<br/>Cartes Interactives"]
+    end
+
+    subgraph DATA_SOURCES [🌍 External Data Providers]
+        WEATHER_API["OpenWeather API"]
+        NOMINATIM_API["Nominatim API"]
+        BOOKING_WEB["Booking.com Website"]
+    end
+
+    subgraph DATA_INGESTION [📥 Data Ingestion Layer]
+        INGEST_PY["Python ETL Scripts<br/>Requests + BS4"]
+        %% connect sources to ingestion
+        WEATHER_API --> INGEST_PY
+        NOMINATIM_API --> INGEST_PY
+        BOOKING_WEB --> INGEST_PY
+    end
+
+    subgraph RAW_DATALAKE [🛢️ AWS S3 – Raw Zone]
+        RAW_CSV["raw_data/*.csv"]
+        INGEST_PY --> RAW_CSV
+    end
+
+    subgraph PROCESSING [⚙️ Processing & Compute Layer]
+        PAN["Pandas Cleaning<br/>Feature Engineering"]
+        RAW_CSV --> PAN
+    end
+
+    subgraph CURATED_ZONE [💾 AWS S3 – Curated Zone (optionnel)]
+        CURATED["curated/*.csv"]
+        PAN -. optional .-> CURATED
+    end
+
+    subgraph DATA_WAREHOUSE [🏛️ AWS RDS – PostgreSQL]
+        DW_TABLE["Table: kayak_destinations"]
+        PAN --> DW_TABLE
+    end
+
+    subgraph ANALYTICS [📊 Analytics Layer]
+        BI["Dashboards / Exploration<br/>via SQL + Python"]
+        DW_TABLE --> BI
+    end
+
+    BI --> VIZ
+```
