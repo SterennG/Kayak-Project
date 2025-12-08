@@ -21,6 +21,7 @@ Le flux de données suit l'architecture suivante :
 4. **Visualisation** :
    - Création de cartes interactives avec **Plotly** pour afficher le Top 5 des destinations et les 20 meilleurs hôtels.
 
+```mermaid
 graph LR
     subgraph SOURCES [Sources de Données]
         A[API OpenWeather]
@@ -55,3 +56,4 @@ graph LR
     G --> H
     G --> I
     H -.-> I
+```
