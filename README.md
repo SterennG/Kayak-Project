@@ -57,3 +57,11 @@ graph LR
     G --> I
     H -.-> I
 ```
+
+---
+Auteure : Stérenn GÉLÉOC 
+
+Projet réalisé dans le cadre de la certification CDSD (Concepteur Développeur en Science des Données) \
+Bloc 1 - Construction et alimentation d'une infrastructure de gestion de données
+
+JEDHA | Fullstack Data Science - Data Collection & Management Project | 2025
